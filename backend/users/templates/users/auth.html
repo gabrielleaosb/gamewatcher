@@ -1,0 +1,255 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'css/output.css' %}" rel="stylesheet">
+  <title>Login / Cadastro</title>
+  <style>
+    .image-background {
+        position: relative;
+        overflow: hidden;
+        box-shadow: none !important;
+        z-index: -2;
+      }
+      
+      .image-background::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+        background-image: url("{% static 'users/images/background.jpeg' %}");
+        background-size: cover;
+        background-position: center;
+        filter: blur(10px);
+        z-index: -1;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      
+      .image-background::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.3); /* Overlay escuro para melhor contraste */
+        z-index: -1;
+      }
+
+    .auth-wrapper {
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0px 50px rgba(0,0,0,0.3);
+      border: none !important;
+      background: none !important;
+      isolation: isolate;
+    }
+    
+    
+    .auth-panel {
+      transition: transform 0.2s ease;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .login-panel {
+      left: 0;
+      transform: translateX(0);
+    }
+    
+    .register-panel {
+      left: 100%;
+      transform: translateX(0);
+    }
+    
+    .slide-left .login-panel {
+      transform: translateX(-100%);
+    }
+    
+    .slide-left .register-panel {
+      transform: translateX(-100%);
+    }
+    
+    .form-container {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    
+    .left-form {
+      left: 0;
+      padding-top: 2rem
+      padding-bottom: 2rem;
+    }
+    
+    .right-form {
+      right: 0;
+    }
+    
+    .welcome-message {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .left-welcome {
+      left: 0;
+    }
+    
+    .right-welcome {
+      right: 0;
+    }
+  </style>
+</head>
+<body class="bg-[#181c24] min-h-screen flex flex-col items-center justify-center"
+    style="background: linear-gradient(to bottom, #fff 33.33%, #080c5c 33.33%)">
+  <!-- Wrapper principal -->
+  <div class="w-[95%] max-w-[1000px] h-[500px] xl:max-w-[1100px] xl:h-[580px] 2xl:max-w-[1400px] 2xl:h-[800px] bg-white rounded-[12px]
+   shadow-[0_10px_50px_rgba(0,0,0,0.3)] overflow-hidden relative auth-wrapper mt-24" id="auth-wrapper">
+
+    <!-- Painel de Login (estado inicial) -->
+    <div class="auth-panel login-panel">
+      <!-- Formulário de Login (esquerda) -->
+      <div class="form-container left-form bg-blue-50 mt-16">
+        <div class="w-full max-w-sm">
+          <h2 class="text-[36px] font-bold mb-10 text-center">Login</h2>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="bg-red-100 text-red-500 text-sm p-2 rounded mb-2">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+              <label for="username" class="block text-sm font-medium text-gray-700"></label>
+              {{ form.username }}
+            </div>
+            <div class="mb-4">
+              <label for="password" class="block text-sm font-medium text-gray-700"></label>
+              {{ form.password }}
+            </div>
+            <div class="flex justify-end mb-8">
+                <p class="text-gray-400 text-sm">
+                    Esqueceu a <a href="javascript:void(0);" " class="text-blue-600 hover:underline">Senha?</a>
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" name="login" class="w-[200px] h-[50px] bg-blue-800 text-white py-2 rounded-xl hover:bg-blue-950 transition cursor-pointer center">
+                    <h1 class="font-bold text-[20px]">Entrar</h1>
+                  </button>
+            </div>
+            <p class="mt-2 text-sm text-center text-gray-400 pt-[80px]">
+              Não tem conta? <a href="javascript:void(0);" onclick="toggleAuth()" class="text-blue-600 hover:underline">Criar conta</a>
+            </p>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Mensagem de Bem-vindo (direita) -->
+      <div class="welcome-message right-welcome image-background text-white">
+        <div>
+          <h2 class="text-[48px] font-bold mb-2">Bem-vindo!</h2>
+          <p class="text-[16px]">Faça o Login para continuar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Painel de Registro (inicialmente escondido) -->
+    <div class="auth-panel register-panel">
+      <!-- Mensagem de Cadastro (esquerda) -->
+      <div class="welcome-message left-welcome image-background text-white">
+        <div>
+          <h2 class="text-[48px] font-bold mb-6">Crie sua conta</h2>
+          <p class="text-lg">Venha fazer parte da nossa comunidade.</p>
+        </div>
+      </div>
+      
+      <!-- Formulário de Registro (direita) -->
+      <div class="form-container right-form bg-blue-50">
+        <div class="w-full max-w-sm">
+          <h2 class="text-[36px] font-bold mb-6 text-center text-gray-800">Criar Conta</h2>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700"></label>
+              {{ register_form.username }}
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700"></label>
+              {{ register_form.email }}
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700"></label>
+              {{ register_form.password1 }}
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700"></label>
+              {{ register_form.password2 }}
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" name="register" class="w-[200px] h-[50px] bg-blue-800 text-white py-2 rounded-xl hover:bg-blue-950 transition cursor-pointer center mb-12 mt-4">
+                    <h1 class="font-bold text-[20px]">Criar conta</h1>
+                  </button>
+            </div>
+            <p class="mt-4 text-sm text-center text-gray-400">
+              Já tem conta? <a href="javascript:void(0);" onclick="toggleAuth()" class="text-blue-600 hover:underline">Entrar</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAuth() {
+      const wrapper = document.getElementById('auth-wrapper');
+      wrapper.classList.toggle('slide-left');
+    }
+    function setupPlaceholderBehavior() {
+        const inputs = document.querySelectorAll('input[placeholder]');
+        
+        inputs.forEach(input => {
+          // Guarda o placeholder original
+          const originalPlaceholder = input.placeholder;
+          
+          // Quando o input ganha foco
+          input.addEventListener('focus', () => {
+            input.placeholder = '';
+          });
+          
+          // Quando o input perde foco
+          input.addEventListener('blur', () => {
+            if (input.value === '') {
+              input.placeholder = originalPlaceholder;
+            }
+          });
+        });
+      }
+  
+      // Chama a função quando o DOM estiver carregado
+      document.addEventListener('DOMContentLoaded', setupPlaceholderBehavior);
+  </script>
+
+</body>
+</html>
