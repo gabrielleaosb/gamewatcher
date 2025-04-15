@@ -1,3 +1,5 @@
-Capa
+cd/backend
+python manage.py runserver
 
-capa 2
+cd/backend
+npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch
