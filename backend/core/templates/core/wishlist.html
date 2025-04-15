@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto py-8">
+    <h1 class="text-2xl font-bold mb-6">Sua Lista de Desejos</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Jogos serão listados aqui -->
+        {% for game in wishlist_games %}
+        <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="font-bold">{{ game.title }}</h3>
+            <p>Preço atual: R$ {{ game.current_price }}</p>
+            <!-- Mais detalhes do jogo -->
+        </div>
+        {% empty %}
+        <p>Você ainda não adicionou jogos à sua lista.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

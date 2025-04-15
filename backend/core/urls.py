@@ -1,6 +1,7 @@
-from django.urls import path, include
-from .views import home
+from django.urls import path
+from .views import home, wishlist
 
 urlpatterns = [
     path('', home, name='home'),
+    path('wishlist/', wishlist, name='wishlist')
 ]
