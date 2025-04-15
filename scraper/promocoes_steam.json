@@ -1,0 +1,82 @@
+[
+  {
+    "nome": "Red Dead Redemption 2",
+    "preco_original": 299.9,
+    "preco_com_desconto": 74.97,
+    "desconto": 75,
+    "validade_desconto": "17/04/2025",
+    "link": "https://store.steampowered.com/app/1174180"
+  },
+  {
+    "nome": "Baldur's Gate 3",
+    "preco_original": 199.99,
+    "preco_com_desconto": 159.99,
+    "desconto": 20,
+    "validade_desconto": "21/04/2025",
+    "link": "https://store.steampowered.com/app/1086940"
+  },
+  {
+    "nome": "Devil May Cry 5",
+    "preco_original": 99.0,
+    "preco_com_desconto": 24.75,
+    "desconto": 75,
+    "validade_desconto": "16/04/2025",
+    "link": "https://store.steampowered.com/app/601150"
+  },
+  {
+    "nome": "Devil May Cry 5",
+    "preco_original": 99.0,
+    "preco_com_desconto": 24.75,
+    "desconto": 75,
+    "validade_desconto": "16/04/2025",
+    "link": "https://store.steampowered.com/app/601150"
+  },
+  {
+    "nome": "Ready or Not",
+    "preco_original": 131.99,
+    "preco_com_desconto": 65.99,
+    "desconto": 50,
+    "validade_desconto": "19/04/2025",
+    "link": "https://store.steampowered.com/app/1144200"
+  },
+  {
+    "nome": "Devil May Cry HD Collection",
+    "preco_original": 99.0,
+    "preco_com_desconto": 32.67,
+    "desconto": 67,
+    "validade_desconto": "16/04/2025",
+    "link": "https://store.steampowered.com/app/631510"
+  },
+  {
+    "nome": "Warhammer 40,000: Space Marine 2",
+    "preco_original": 199.9,
+    "preco_com_desconto": 129.93,
+    "desconto": 35,
+    "validade_desconto": "22/04/2025",
+    "link": "https://store.steampowered.com/app/2183900"
+  },
+  {
+    "nome": "Diablo® IV: Vessel of Hatred™ - Conjunto de Expansão",
+    "preco_original": 319.9,
+    "preco_com_desconto": 191.94,
+    "desconto": 40,
+    "validade_desconto": "28/04/2025",
+    "link": "https://store.steampowered.com/app/1142789"
+  },
+  {
+    "nome": "Detroit: Become Human",
+    "preco_original": 119.99,
+    "preco_com_desconto": 35.99,
+    "desconto": 70,
+    "validade_desconto": "21/04/2025",
+    "link": "https://store.steampowered.com/app/1222140"
+  },
+  {
+    "nome": "Euro Truck Simulator 2",
+    "preco_original": 61.99,
+    "preco_com_desconto": 15.49,
+    "desconto": 75,
+    "validade_desconto": "16/04/2025",
+    "link": "https://store.steampowered.com/app/227300"
+  }
+]
