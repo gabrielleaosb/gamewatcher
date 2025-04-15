@@ -19,7 +19,7 @@ cd backend
 
 # Instalar o CLI do Tailwind CSS globalmente (se ainda não tiver)
 npm install -g npm
-npm install -g @tailwindcss/cli
+npm install tailwindcss @tailwindcss/cli
 
 # Executar o Tailwind CSS em modo watch
 npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch
